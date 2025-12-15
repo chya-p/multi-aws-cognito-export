@@ -1,39 +1,41 @@
 # Multi AWS Account Cognito UserPool Export Script
 
-## 概要
-AWS CloudShell 環境のみを利用し、AssumeRole（STS）を用いて  
-複数 AWS アカウントを横断し、Cognito UserPool 情報を CSV 形式で出力する  
-Bash スクリプトです。
+## Overview
+This repository provides a Bash script that exports Amazon Cognito User Pool information
+across multiple AWS accounts into a single CSV file.
+The script is designed to run exclusively on AWS CloudShell and supports environments
+where AWS CLI profiles cannot be used, by leveraging STS AssumeRole (Switch Role).
+It is intended for operational tasks such as cross-account inventory management,
+auditing, and security reviews in restricted corporate environments.
 
-ローカル環境で AWS CLI 設定ができないセキュリティ制約下でも  
-運用可能な構成となっています。
-
----
-
-## 主な機能
-- 複数 AWS アカウントの Cognito UserPool 一覧取得
-- AssumeRole によるアカウント切り替え
-- アカウント ID / アカウント名 を含めた CSV 出力
-- 数十アカウントを想定したスケーラブルな設計
-
----
-
-## 前提条件
-- AWS CloudShell を利用できること
-- 各対象 AWS アカウントで AssumeRole（スイッチロール）が可能であること
-- 各アカウントに共通の Role 名が存在すること
-- jq が利用可能であること（CloudShell には標準搭載）
+### 日本語補足
+本リポジトリは、AWS CloudShell 環境のみを利用し、
+STS AssumeRole（スイッチロール）を用いて
+複数 AWS アカウントに存在する Cognito UserPool 情報を
+横断的に取得・CSV 出力する Bash スクリプトです。
+AWS CLI プロファイルの利用が制限された
+セキュリティ要件の厳しい環境下での
+運用・監査・棚卸し用途を想定しています。
 
 ---
 
-## 設定方法
-スクリプト内の以下の箇所を編集してください。
+## Key Features
+- 複数 AWS アカウントの Cognito UserPool 情報を一括取得
+- STS AssumeRole によるアカウント横断アクセス
+- AWS CloudShell のみで実行可能
+- CSV 形式での出力（監査・棚卸し向け）
+
+---
+
+## Usage
+1. AWS CloudShell を起動
+2. get_cognito.sh に対象アカウント ID と Role 名を設定
+3. スクリプトを実行
 
 ```bash
-ACCOUNTS=(
-  "123456789012"
-  "234567890123"
-)
+./get_cognito.sh
 
-ROLE_NAME="ReadOnlyRole"
+---
 
+## License
+MIT License
