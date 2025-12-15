@@ -1,12 +1,31 @@
-# Multi AWS Account Cognito UserPool Export Script
+# Multi AWS Cognito UserPool Export Script
 
 ## Overview
-This repository provides a Bash script that exports Amazon Cognito User Pool information
-across multiple AWS accounts into a single CSV file.
-The script is designed to run exclusively on AWS CloudShell and supports environments
-where AWS CLI profiles cannot be used, by leveraging STS AssumeRole (Switch Role).
-It is intended for operational tasks such as cross-account inventory management,
-auditing, and security reviews in restricted corporate environments.
+This repository provides a shell script to export Amazon Cognito User Pool information
+from **multiple AWS accounts** into a single CSV file.
+
+The script is designed to run on **AWS CloudShell** and supports environments
+where **AWS CLI profiles cannot be used**, by leveraging **STS AssumeRole (Switch Role)**.
+
+---
+
+## Key Features
+- Export Cognito User Pool information across multiple AWS accounts
+- Clearly identify which AWS account each User Pool belongs to
+- Output results in CSV format for auditing and reporting
+- No local AWS CLI profile configuration required
+- Suitable for restricted corporate environments
+
+---
+
+## Output Format
+The script generates a CSV file with the following columns:
+
+```text
+No,AccountId,AccountName,UserPoolId,UserPoolName,Status,CreationDate
+```
+
+---
 
 ### 日本語補足
 本リポジトリは、AWS CloudShell 環境のみを利用し、
