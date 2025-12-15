@@ -34,6 +34,7 @@ AWS CLI プロファイルの利用が制限された
 
 ```bash
 ./get_cognito.sh
+```
 
 ---
 
